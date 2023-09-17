@@ -177,11 +177,7 @@ public static class TextureDraw
                 }
             }
         }
-
     }
-
-
-
 
     static void gdImageHLine(Texture2D tex, int y, int x1, int x2, Color col, int thickness)
     {
@@ -363,7 +359,7 @@ public static class TextureDraw
         //}
         for (int asd = 0; asd < thickness; asd++)
         {
-            for (double i = 0.0; i < 360.0; i += 0.1)
+            for (double i = 0.0; i < 360.0; i += 0.05)
             {
                 double angle = i * System.Math.PI / 180; //ラジアンへの変換
                 int x = (int)(cx + r * System.Math.Cos(angle));
@@ -395,16 +391,23 @@ public static class TextureDraw
 
         if (sides > 0)
         {
-            float angdiff = Mathf.Deg2Rad * (360 / (sides));
-            rot = Mathf.Deg2Rad * (rot);
+            float angdiff = Mathf.Deg2Rad * (360 / (sides)); //一つの角が何度か
+            rot = Mathf.Deg2Rad * (rot); //おそらく回転角
+
+            float angTopInit = Mathf.Deg2Rad * 90;
+
             for (int i = 0; i < sides; i++)
             {
                 // trova i punti sulla circonferenza
-                values[i].x = (size / 2) + radius * Mathf.Cos(i * angdiff + rot); // X
-                values[i].y = (size / 2) + radius * Mathf.Sin((i) * angdiff + rot); // Y
+                values[i].x = (size / 2 /*中心の点*/) + radius * Mathf.Cos(i * angdiff + rot + angTopInit); // X
+                
+                values[i].y = (size / 2) + radius * Mathf.Sin(i * angdiff + rot + angTopInit); // Y
             }
         }
 
+        //Debug.Log("size/2 " + size / 2);
+        //Debug.Log("最初の点"+ Mathf.Cos(0 * (Mathf.Deg2Rad * (360 / (sides))) + rot));
+        //Debug.Log(sides + "角形" + " , x " + values[0].x + ", y " + values[0].y);
         return values;
     }
 
@@ -416,7 +419,7 @@ public static class TextureDraw
             return;
         }
 
-        Vector2[] p = getPoints(n, rot, r, size);
+        Vector2[] p = getPoints(n /*何角形か*/, rot, r, size);
 
         int i = 0;
 
@@ -428,8 +431,6 @@ public static class TextureDraw
         }
 
     }
-
-
 
     public static void drawFilledPolygon(Texture2D tex, int n, int r, int rot, int size, Color color, Color backgroundColor, int thickness)
     {

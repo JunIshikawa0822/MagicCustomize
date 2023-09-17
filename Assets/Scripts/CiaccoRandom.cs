@@ -15,9 +15,9 @@ public class CiaccoRandom
     // get a random int between $min and $max [both included]
     public int getRand(int min, int max)
     {
-        Debug.Log("tree " + tree);
+        //Debug.Log("tree " + tree);
         tree = (tree * 123) % 69522569;
-        Debug.Log("tree " + tree);
+        //Debug.Log("tree " + tree);
         return tree % (max - min + 1) + min;
     }
 }
