@@ -340,27 +340,7 @@ public static class TextureDraw
 
     public static void drawCircle(Texture2D tex, int cx, int cy, int r /* radius */ , Color col, int thickness)
     {
-        //int y = r;
-        //float d = 1 / 4 - r;
-        //float end = Mathf.Ceil(r / Mathf.Sqrt(2));
-
-        //for (int x = 0; x <= end; x++)
-        //{
-        //    tex.SetPixel(cx + x, cy + y, col);
-        //    tex.SetPixel(cx + x, cy - y, col);
-        //    tex.SetPixel(cx - x, cy + y, col);
-        //    tex.SetPixel(cx - x, cy - y, col);
-        //    tex.SetPixel(cx + y, cy + x, col);
-        //    tex.SetPixel(cx - y, cy + x, col);
-        //    tex.SetPixel(cx + y, cy - x, col);
-        //    tex.SetPixel(cx - y, cy - x, col);
-
-        //    d += 2 * x + 1;
-        //    if (d > 0)
-        //    {
-        //        d += 2 - 2 * y--;
-        //    }
-        //}
+        
         for (int asd = 0; asd < thickness; asd++)
         {
             for (double i = 0.0; i < 360.0; i += 0.1)
@@ -399,7 +379,6 @@ public static class TextureDraw
             rot = Mathf.Deg2Rad * (rot);
             for (int i = 0; i < sides; i++)
             {
-                // trova i punti sulla circonferenza
                 values[i].x = (size / 2) + radius * Mathf.Cos(i * angdiff + rot); // X
                 values[i].y = (size / 2) + radius * Mathf.Sin((i) * angdiff + rot); // Y
             }
