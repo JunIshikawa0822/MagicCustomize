@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class AlchemyCircle : MonoBehaviour
 {
+    [SerializeField]
+    TextureManager textureManager;
+    
     //謎のRawImage
     [SerializeField]
     RawImage ri;
@@ -34,11 +37,14 @@ public class AlchemyCircle : MonoBehaviour
         //size = SIZ * THICK
         size = SIZ * thickness;
 
+        Debug.Log(size);
+
         //RandomInt = UnityEngine.Random.Range(0, 200);
 
         //使用するTextureのフォーマットを設定している
         texture = new Texture2D(size, size, TextureFormat.ARGB32, false, false);
-        Debug.Log(texture);
+
+        //Debug.Log(texture);
         //ri = GetComponent<RawImage>();
         //Debug.Log(ri);
 
@@ -46,13 +52,18 @@ public class AlchemyCircle : MonoBehaviour
         for (int i = 0; i < size * size; i++) resetMatrix[i] = backgroundColor;
 
         texture.SetPixels(resetMatrix);
+
         Generate(Random.Range(0, 255));
 
         //test(0);
 
         texture.filterMode = FilterMode.Bilinear;
+
         texture.Apply();
+
         ri.texture = texture;
+
+        //textureManager.TextureMix(texture, textureManager.RuneImage, 1000000, )
         //StartCoroutine(NewCircle());
     }
     int asd = 0;
@@ -97,10 +108,6 @@ public class AlchemyCircle : MonoBehaviour
     //        ri.texture = texture;
     //    }
     //}
-
-    // ############################################
-    // TODO: dimezzare tutti i radius dei cerchi? #
-    // ############################################
 
     void Generate(int id)
     {
