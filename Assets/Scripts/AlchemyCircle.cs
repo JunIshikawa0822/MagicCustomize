@@ -52,8 +52,10 @@ public class AlchemyCircle : MonoBehaviour
         for (int i = 0; i < size * size; i++) resetMatrix[i] = backgroundColor;
 
         texture.SetPixels(resetMatrix);
+        int n = UnityEngine.Random.Range(0, 100);
+        Debug.Log("n" + n);
 
-        Generate(Random.Range(0, 255));
+        Generate(n);
 
         //test(0);
 

@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class CiaccoRandom
 {
-    private static int tree = 0;
+    private static int tree ;
 
     // set the seed
     public void setSeed(int seed)
